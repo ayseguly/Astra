@@ -9,80 +9,91 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    let Background = Image("background")
+    let darkBackground = UIColor(red: 0.189, green: 0.187, blue: 0.256, alpha: 1.0)
+
+
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @ObservedObject var tabItems = TabItems.shared
+        
+        @State private var circleSize: CGFloat = 50
+        @State private var iconeSize: CGFloat = 30
+        @State private var selectedItem = Tab.First
+    
+    private enum Tab{
+        case First, Second, Third, Fourth, Fifth
+    }
+    
+    
+    var body: some View {
+        NavigationView{
+            ZStack{
+                VStack {
+                    Spacer()
+                    Image("siri").frame(width: 40,height: 40).padding(.top,500)
+                    Spacer()
+                    
+                    
+                    ZStack {
+                        Bar(tab: tabItems.selectedTabIndex)
+                            .foregroundColor(.gray).blur(radius: 10)
+                            .frame(width: UIScreen.main.bounds.width, height: 100)
+                        HStack(spacing: (UIScreen.main.bounds.width - (CGFloat(TabItems.shared.items.count + 1) * self.circleSize)) / (CGFloat(TabItems.shared.items.count) + 1)) {
+                            ForEach(0..<tabItems.items.count, id: \.self) { i in
+                                ZStack {
+                                    Circle()
+                                        .frame(width: self.circleSize, height: self.circleSize)
+                                        .foregroundColor(.white.opacity(0.7))
+                                        .blur(radius: 8)
+                                        .onTapGesture {
+                                            
+                                            self.tabItems.select(1)
+                                            settView()
+                                            
+                                            //NavigationLink("",destination: navigationScreen(), isActive: self.tabItems.select(1))
+                                                
+                                                //i(tabItems.select(1))
+                                            // Code to change tab screen can go here...
+                                            
+                                        }
+                                    Image(systemName: self.tabItems.items[i].imageName)
+                                        .resizable()
+                                        .foregroundColor(Color.black)
+                                        .frame(width: self.iconeSize, height: self.iconeSize)
+                                        .opacity(self.tabItems.items[i].opacity)
+                                }
+                                .offset(y: self.tabItems.items[i].offset)
+                                
+                            }
+                        }
+                        Image("astra").resizable().frame(width: 50,height: 50).offset(y: -10)
+                    }
+                }
+                .edgesIgnoringSafeArea(.all)
+            }.background(Image("background"))
+            
+        }
+    }
+        
+}
+struct settView: View {
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            VStack {
+                NavigationLink(destination: navigationScreen()) {
+                    Text("Show Detail View")
+                }.navigationBarTitle("Navigation")
             }
         }
     }
 }
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
-}
+    
+//background(Image("background"))

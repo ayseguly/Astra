@@ -16,6 +16,10 @@
 		B417EBB7299F5BDB0025416E /* astraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EBB6299F5BDB0025416E /* astraTests.swift */; };
 		B417EBC1299F5BDB0025416E /* astraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EBC0299F5BDB0025416E /* astraUITests.swift */; };
 		B417EBC3299F5BDB0025416E /* astraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EBC2299F5BDB0025416E /* astraUITestsLaunchTests.swift */; };
+		B417EBD029A13E640025416E /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EBCF29A13E640025416E /* TabItem.swift */; };
+		B417EBD229A155150025416E /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417EBD129A155150025416E /* Bar.swift */; };
+		B4550A4229B3F39100A9C9E5 /* navigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4550A4129B3F39100A9C9E5 /* navigationScreen.swift */; };
+		B4550A4429B479A300A9C9E5 /* loginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4550A4329B479A300A9C9E5 /* loginScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		B417EBBC299F5BDB0025416E /* astraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = astraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B417EBC0299F5BDB0025416E /* astraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = astraUITests.swift; sourceTree = "<group>"; };
 		B417EBC2299F5BDB0025416E /* astraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = astraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B417EBCF29A13E640025416E /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		B417EBD129A155150025416E /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		B4550A4129B3F39100A9C9E5 /* navigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationScreen.swift; sourceTree = "<group>"; };
+		B4550A4329B479A300A9C9E5 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,11 @@
 			isa = PBXGroup;
 			children = (
 				B417EBA0299F5BDA0025416E /* astraApp.swift */,
+				B4550A4329B479A300A9C9E5 /* loginScreen.swift */,
 				B417EBA2299F5BDA0025416E /* ContentView.swift */,
+				B4550A4129B3F39100A9C9E5 /* navigationScreen.swift */,
+				B417EBCF29A13E640025416E /* TabItem.swift */,
+				B417EBD129A155150025416E /* Bar.swift */,
 				B417EBA4299F5BDB0025416E /* Assets.xcassets */,
 				B417EBA9299F5BDB0025416E /* Persistence.swift */,
 				B417EBAB299F5BDB0025416E /* astra.xcdatamodeld */,
@@ -264,8 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B417EBAA299F5BDB0025416E /* Persistence.swift in Sources */,
+				B417EBD229A155150025416E /* Bar.swift in Sources */,
 				B417EBAD299F5BDB0025416E /* astra.xcdatamodeld in Sources */,
 				B417EBA3299F5BDA0025416E /* ContentView.swift in Sources */,
+				B417EBD029A13E640025416E /* TabItem.swift in Sources */,
+				B4550A4429B479A300A9C9E5 /* loginScreen.swift in Sources */,
+				B4550A4229B3F39100A9C9E5 /* navigationScreen.swift in Sources */,
 				B417EBA1299F5BDA0025416E /* astraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
